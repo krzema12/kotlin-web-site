@@ -1,0 +1,42 @@
+.wrap {
+    display: flex;
+    padding: 12px 0;
+}
+
+.warp-with-project {}
+
+.logo {
+    background: url("./logo.svg") no-repeat left center;
+    box-sizing: content-box;
+    text-indent: -9999px;
+    padding-right: 8px;
+    height: 18px;
+    width: 18px;
+}
+
+.name {
+    text-indent: -9999px;
+}
+
+.warp--kotlin > .name {
+    background: url("./products/kotlin.svg") no-repeat center center;
+    height: 18px;
+    width: 62px;
+}
+
+.version, .version:any-link {
+    color: rgba(255, 255, 255, .75);
+
+    font-family: Inter, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 16px;
+    text-decoration: none;
+    transition: .3s ease-out;
+    font-smoothing: antialiased;
+
+    margin-left: 4px;
+}
+
+.version:hover {
+    color: #fff;
+}
