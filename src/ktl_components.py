@@ -51,6 +51,8 @@ class KTLComponentExtension(Extension):
         stdout_data, stderr_data = nodejs.communicate()
         result = stdout_data.decode("utf8", errors='ignore')
 
+        print("exec %s with: %s, %s" % (name, stderr_data, stdout_data))
+
         if nodejs.returncode != 0:
             input_hash = hashlib.sha1(props_json.encode("utf8")).hexdigest()
             print(" ##teamcity[buildProblem description='ktl-components failed! - %s'identity='%s']" % (stderr_data, input_hash))
