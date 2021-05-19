@@ -1,7 +1,7 @@
 import hashlib
 import subprocess
 from json import dumps
-from functools import cache
+from functools import lru_cache
 
 from flask import Markup
 from jinja2 import nodes
@@ -38,7 +38,7 @@ class KTLComponentExtension(Extension):
         props_json = dumps(props_render)
         return self.__exec_render(name, props_json)
 
-    @cache
+    @lru_cache(maxsize=None)
     def __exec_render(self, name, props_json):
         nodejs = subprocess.Popen(
             ["node", "compile.js", name, props_json],
