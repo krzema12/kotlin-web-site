@@ -20,7 +20,7 @@
 
 <div class="global-layout">
 {#    {% include 'inc/header.html' %}#}
-    {% ktl_component "header" releaseUrl=data.releases.latest.url version=data.releases.latest.version %}
+    {% ktl_component "header" releaseUrl=data.releases.latest.url version=data.releases.latest.version hasSearch=True %}
     {% block page_outer_content %}
         <div class="g-layout global-content">
             {% include 'inc/nav/docs-nav.html' %}

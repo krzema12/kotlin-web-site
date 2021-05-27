@@ -2,6 +2,7 @@
 const babelRc = Object.assign({}, require('./.babelrc.json'), {
     cache: true,
     extensions: ['.mjs', '.js', '.jsx'],
+    ignore: [],
 });
 
 require('@babel/register')(babelRc);

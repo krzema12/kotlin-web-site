@@ -3,13 +3,13 @@ import 'whatwg-fetch';
 import kotlinPlayground from 'kotlin-playground';
 import { createElement } from 'react';
 import { render } from 'react-dom';
+import '@jetbrains/kotlin-web-site-ui/dist/header.css';
 import { initSearch } from '../com/search/search';
 import '../com/cities-banners';
 import GifPlayer from '../com/gif-player/gif-player';
 import CodeMirror from '../com/codemirror/CodeMirror';
 import './code-blocks';
 import '../com/head-banner';
-import '../../../@ktl-components/dist/header.css';
 
 function trackEvent(event) {
   window.dataLayer = window.dataLayer || [];
@@ -84,49 +84,6 @@ function initGifPlayer() {
   });
 }
 
-function getPropsFromComment(node) {
-  let currentNode = null;
-  let previousComment = null;
-
-  const iterator = document.createNodeIterator(node.parentNode, NodeFilter.SHOW_ALL);
-
-  while (currentNode = iterator.nextNode()) {
-    if (currentNode === node) {
-      return JSON.parse(previousComment.nodeValue);
-    }
-
-    if (currentNode.nodeType === 8) previousComment = currentNode;
-  }
-
-  return {};
-}
-
-function initKTLComponentNode({ default: Component }, additionalProps, node) {
-  const props = { ...getPropsFromComment(node), ...additionalProps };
-  const fake_node = document.createElement('div');
-  render(createElement(Component, props), fake_node);
-  node.replaceWith(fake_node); // TODO: preact render to node
-}
-
-function initKTLComponent(nodes, props) {
-  const components = nodes.reduce((nodes, node) => {
-    const name = node.getAttribute('data-ktl-type');
-
-    nodes[name] = nodes[name] || [];
-    nodes[name].push(node);
-
-    return nodes;
-  }, {});
-
-  Promise.all(
-      Object.entries(components)
-          .map(([ name, values ]) => (
-              import(`../../../@ktl-components/dist/${name}.js`)
-                .then(module => values.map(node => initKTLComponentNode(module, props || {}, node)))
-          ))
-  );
-}
-
 // Handle with platforms menu in header
 const hoverSolutionsMenu = function () {
   const $solutionsMenuItem = $('.nav-item-solutions');
@@ -137,6 +94,42 @@ const hoverSolutionsMenu = function () {
       function () { $solutionsMenu.stop(true).fadeOut(300); }
   );
 };
+
+function getKTLComponentsComments(node) {
+  const comment = ' ktl_component: ';
+
+  const result = [];
+  let currentNode = null;
+
+  const iterator = document.createNodeIterator(node || document.body, NodeFilter.SHOW_ALL);
+
+  while (currentNode = iterator.nextNode()) {
+    if (currentNode.nodeType === 8) {
+      const { nodeValue } = currentNode;
+
+      if(nodeValue.startsWith(comment)) {
+        const { name, props } = JSON.parse(nodeValue.substring(comment.length));
+
+        result.push({
+          name: name,
+          props: props,
+          node: currentNode,
+        });
+      }
+    }
+  }
+
+  return result;
+}
+
+function initKTLComponent(node, name, props) {
+  import(`@jetbrains/kotlin-web-site-ui/dist/${name}.js`)
+      .then(({ default: Component }) => {
+        const fake_node = document.createElement('div');
+        render(createElement(Component, props), fake_node);
+        node.replaceWith(fake_node); // TODO: preact render to node
+      });
+}
 
 $(function () {
   CodeMirror.colorize($('.code._highlighted'));
@@ -152,10 +145,12 @@ $(function () {
 
   const { openPopup } = initSearch();
 
-  initKTLComponent(
-      $('[data-ktl-type=header]').toArray(),
-      { onSearchClick: openPopup }
-  );
+  getKTLComponentsComments().forEach(({ name, node, props }) => {
+    if (name === 'header') initKTLComponent(node.nextElementSibling, name, {
+      ...props,
+      onSearchClick: openPopup,
+    });
+  });
 
   hoverSolutionsMenu();
 });

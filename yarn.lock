@@ -2,6 +2,14 @@
 # yarn lockfile v1
 
 
+"@babel/runtime-corejs3@^7.13.10":
+  version "7.14.0"
+  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.14.0.tgz#6bf5fbc0b961f8e3202888cb2cd0fb7a0a9a3f66"
+  integrity sha512-0R0HTZWHLk6G8jIk0FtoX+AatCtKnswS98VhXwGImFc759PJRp4Tru0PQYZofyijTFUr+gT8Mu7sgXVJLQ0ceg==
+  dependencies:
+    core-js-pure "^3.0.0"
+    regenerator-runtime "^0.13.4"
+
 "@jetbrains/babel-preset-jetbrains@^1.0.1":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@jetbrains/babel-preset-jetbrains/-/babel-preset-jetbrains-1.1.3.tgz#1fcf5260b79b0eacb8f2ffdf9d04ab1ac16198b3"
@@ -11,6 +19,28 @@
     babel-preset-env "^1.7.0"
     babel-preset-react "6.24.1"
     babel-preset-stage-2 "6.24.1"
+
+"@jetbrains/kotlin-web-site-ui@1.3.14":
+  version "1.3.14"
+  resolved "https://registry.yarnpkg.com/@jetbrains/kotlin-web-site-ui/-/kotlin-web-site-ui-1.3.14.tgz#9933d954d9d7ca7e2f5b645cfd60f306cdc4083a"
+  integrity sha512-S02faYtZRjtON0G5DjE11ahAtlggiXh/8ziUlwX1yWfwt//S3t2i77+8mDgKYh2/4I9JSorobRpEXSMTP3MIYQ==
+
+"@rescui/typography@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@rescui/typography/-/typography-0.0.1.tgz#22bee3868885d7b3fa65f8024b140f17aa467579"
+  integrity sha512-ODGiOIA/fArWmwEZEmdF5SJByVeiqVamX3ZWK/PD4JsxeNvzZl5TSA5JiDnlEdE42jLSIPd463ioF4n1L9fV2w==
+  dependencies:
+    "@babel/runtime-corejs3" "^7.13.10"
+    bem-cn-fast "^1.0.2"
+    inter-ui "^3.15.1"
+
+"@rescui/ui-contexts@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@rescui/ui-contexts/-/ui-contexts-0.0.2.tgz#899a9077b15fafae027fd277a89d21b74328f10c"
+  integrity sha512-wh+NZdX4iu4Nz/dj2zjqQyBFui2IJEKw2UB5YeqgAKHAa6WcyfVymcBG5hxHsjXP5SrBoSrEsOBx5WZQw+lDlg==
+  dependencies:
+    "@babel/runtime-corejs3" "^7.13.10"
+    core-js "^3.9.1"
 
 "@rollup/plugin-buble@0.21.3":
   version "0.21.3"
@@ -1331,6 +1361,11 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
+bem-cn-fast@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/bem-cn-fast/-/bem-cn-fast-1.0.2.tgz#ec52816084876ea49ca4701681220dedf0687821"
+  integrity sha1-7FKBYISHbqScpHAWgSIN7fBoeCE=
+
 big.js@^3.1.3:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/big.js/-/big.js-3.2.0.tgz#a5fc298b81b9e0dca2e458824784b65c52ba588e"
@@ -2057,6 +2092,11 @@ copy-descriptor@^0.1.0:
   resolved "https://registry.yarnpkg.com/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
   integrity sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
 
+core-js-pure@^3.0.0:
+  version "3.12.1"
+  resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.12.1.tgz#934da8b9b7221e2a2443dc71dfa5bd77a7ea00b8"
+  integrity sha512-1cch+qads4JnDSWsvc7d6nzlKAippwjUlf6vykkTLW53VSV+NkE6muGBToAjEA8pG90cSfcud3JgVmW2ds5TaQ==
+
 core-js@^1.0.0:
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
@@ -2066,6 +2106,11 @@ core-js@^2.4.0, core-js@^2.4.1, core-js@^2.5.0:
   version "2.6.12"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
   integrity sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
+
+core-js@^3.9.1:
+  version "3.12.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.12.1.tgz#6b5af4ff55616c08a44d386f1f510917ff204112"
+  integrity sha512-Ne9DKPHTObRuB09Dru5AjwKjY4cJHVGu+y5f7coGn1E9Grkc3p2iBwE9AI/nJzsE29mQF7oq+mhYYRqOMFN1Bw==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -3758,6 +3803,11 @@ instantsearch.js@2.0.2:
     rheostat "^2.1.1"
     to-factory "^1.0.0"
     uglify-js "2"
+
+inter-ui@^3.15.1:
+  version "3.18.1"
+  resolved "https://registry.yarnpkg.com/inter-ui/-/inter-ui-3.18.1.tgz#32d2676e4b03db08adc597e5c4bd89012f4e2351"
+  integrity sha512-W3LnAirp6a1ixpAHZwr9gH52KlOQOAp0oqbmIoGi2dAIlcIB7auJgLr9XFHUzYy2FoZ0Nf7aPe/nHMZB4/Zvdg==
 
 internal-ip@^4.3.0:
   version "4.3.0"
@@ -5836,6 +5886,11 @@ regenerator-runtime@^0.11.0:
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
   integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
 
+regenerator-runtime@^0.13.4:
+  version "0.13.7"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.7.tgz#cac2dacc8a1ea675feaabaeb8ae833898ae46f55"
+  integrity sha512-a54FxoJDIr27pgf7IgeQGxmqUNYrcV338lf/6gH456HZ/PhX+5BcwHXG9ajESmwe6WRO0tAzRUrRmNONWgkrew==
+
 regenerator-transform@^0.10.0:
   version "0.10.1"
   resolved "https://registry.yarnpkg.com/regenerator-transform/-/regenerator-transform-0.10.1.tgz#1e4996837231da8b7f3cf4114d71b5691a0680dd"
@@ -6951,6 +7006,11 @@ trim-right@^1.0.1:
   integrity sha512-m6s2OdQe5wgpFMC+pAJ+q9djG82O2jcHPOI6RNg1yy9rCYR+WD6Nbpl32fDpfC56nirdRy+opFa/Vk7HYhqaew==
   dependencies:
     glob "^7.1.2"
+
+tslib@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.2.0.tgz#fb2c475977e35e241311ede2693cee1ec6698f5c"
+  integrity sha512-gS9GVHRU+RGn5KQM2rllAlR3dU6m7AcpJKdtH8gFvQiC4Otgk98XnmMU+nZenHt/+VhnBPWwgrJsyrdcw6i23w==
 
 tty-browserify@0.0.0:
   version "0.0.0"

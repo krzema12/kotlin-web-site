@@ -7,6 +7,7 @@ from flask import Markup
 from jinja2 import nodes
 from jinja2.ext import Extension
 
+
 class KTLComponentExtension(Extension):
     """ {% ktl_component "componentName" stringProp="value" boolProp %}"""
 
@@ -33,10 +34,17 @@ class KTLComponentExtension(Extension):
         return nodes.Output([result], lineno=lineno)
 
     def _render(self, name, props):
-        props_render = {} if not props else props.copy()
-        props_render["data-ktl-type"] = name
-        props_json = dumps(props_render)
-        return self.__exec_render(name, props_json)
+        content = self.__exec_render(name, dumps(props))
+
+        props_render = dict(
+            name=name,
+            props=props,
+        )
+
+        return Markup(
+            "<!-- ktl_component: %s -->%s"
+            % (dumps(props_render), content)
+        )
 
     @lru_cache(maxsize=None)
     def __exec_render(self, name, props_json):
@@ -53,10 +61,12 @@ class KTLComponentExtension(Extension):
 
         if nodejs.returncode != 0:
             input_hash = hashlib.sha1(props_json.encode("utf8")).hexdigest()
-            print(" ##teamcity[buildProblem description='ktl-components failed! - %s'identity='%s']" % (stderr_data, input_hash))
+
+            print(
+                "##teamcity[buildProblem description='ktl-components failed! - %s'identity='%s']"
+                % (stderr_data, input_hash)
+            )
+
             result = self.error_template % stderr_data
 
-        return Markup(
-            "<!-- %s -->%s"
-            % (props_json, result)
-        )
+        return result
