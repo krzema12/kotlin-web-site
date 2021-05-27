@@ -2,7 +2,7 @@ import $ from 'jquery';
 import 'whatwg-fetch';
 import kotlinPlayground from 'kotlin-playground';
 import { createElement } from 'react';
-import { render } from 'react-dom';
+import { hydrate } from 'react-dom';
 import '@jetbrains/kotlin-web-site-ui/dist/header.css';
 import { initSearch } from '../com/search/search';
 import '../com/cities-banners';
@@ -126,7 +126,7 @@ function initKTLComponent(node, name, props) {
   import(`@jetbrains/kotlin-web-site-ui/dist/${name}.js`)
       .then(({ default: Component }) => {
         const fake_node = document.createElement('div');
-        render(createElement(Component, props), fake_node);
+        hydrate(createElement(Component, props), fake_node);
         node.replaceWith(fake_node); // TODO: preact render to node
       });
 }
