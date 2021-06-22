@@ -15,8 +15,5 @@ jobs:
         with:
           yq-version: 'v4.9.5'
       - run: |
-         echo Hello!
-         yq eval --tojson -j data/user-groups.yml
-         which jsonschema
          jsonschema -i <(yq eval --tojson -j data/user-groups.yml) data/schemas/user-groups.json
 
