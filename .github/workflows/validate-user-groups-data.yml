@@ -17,5 +17,6 @@ jobs:
       - run: |
          echo Hello!
          yq eval --tojson -j data/user-groups.yml
+         which jsonschema
          jsonschema -i <(yq eval --tojson -j data/user-groups.yml) data/schemas/user-groups.json
 
