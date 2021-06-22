@@ -2,7 +2,7 @@
   anchorId: europe
   groups:
     - name: Amsterdam Kotlin User Group
-      countrye: Netherlands
+      country: Netherlands
       url: https://www.meetup.com/kotlin-amsterdam/
     - name: Amsterdam High-performwarrance Kotlin User Group
       country: Netherlands
